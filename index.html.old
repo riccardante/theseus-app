@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <link rel="stylesheet" type="text/css" href="/style/base.css" />
+   <link rel="stylesheet" type="text/css" href="/style/ui.css" />
+   <link rel="stylesheet" type="text/css" href="/style/building_blocks.css" />
+   <link href="/shared/style/headers.css" rel="stylesheet" type="text/css">
+   <link href="/shared/style/buttons.css" rel="stylesheet" type="text/css">
+   <link href="/shared/style/drawer.css" rel="stylesheet" type="text/css">
+   <link href="/shared/style/lists.css" rel="stylesheet" type="text/css">   
+   
+   <link href="/shared/util.css" rel="stylesheet" type="text/css">   
+   <link rel="stylesheet" type="text/css" href="/style/kiloporta.css" />
+
+  <!-- script src="/js/model.js"></script -->
+
+<title>kiloporta</title>
+</head>
+<body role="application">
+  <!-- SPLASH -->
+  <section role="region" id="splash">
+    <div id="dSplash">
+      <a class="recommend" id="bSignUp" role="button" href="#">Sign up</a>
+      <a class="recommend" id="bSignIn" role="button" href="#">Sign in</a>
+    </div>
+  </section>
+
+
+  <!-- SIGNIN -->
+  <section role="region" id="signin">
+    <header>
+        <h1>KILOPORTA</h1>
+    </header>
+    <div id="dSignin">
+    <form>
+      <fieldset>
+        <legend>Username</legend>
+        <section>
+          <p>
+            <input type="text" placeholder="username" required="required"> 
+         </p>
+         </section>
+       </fieldset>
+      <fieldset>
+        <legend>Password</legend>
+        <section>
+          <p>
+            <input type="password" placeholder="xxxx" required="required"> 
+         </p>
+         </section>
+       </fieldset>
+
+      <a class="recommend" id="bFormSignIn" role="button" href="#">Sign in</a>
+      </form>
+    </div>
+  </section>
+
+
+
+
+  <!-- HOME -->
+<div id="dHome">
+ <section data-type="sidebar">
+    <header>
+      <h1>User</h1>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="#">status  <em>(active)</em></a></li>
+        <li><a href="#">Notifications <em>(9)</em></a></li>
+        <li><a href="#">Requests  <em>(0)</em></a></li>
+        <li><a id="dLogOff" href="#">Log off</a></li>
+    </ul>
+    </nav>
+  </section>
+
+  <section id="drawer"  role="region">
+    <header>
+      <a href="#"><span class="icon icon-menu">hide sidebar</span></a>
+      <a href="#drawer"><span class="icon icon-menu">show sidebar</span></a>
+      <h1>Dashboard</h1>
+    </header>
+   
+    <div role="main" class="scrollable">
+    
+    <section data-type="list" >
+  <header>Title</header>
+  <ul>
+    <li>
+      <p>Travis Gray</p>
+    </li>
+    <li>
+      <a href="#">
+        <p>Travis Gray</p>
+        <p>Clickable item</p>
+      </a>
+    </li>
+    <li>
+      <aside class="pack-end">
+        <img alt="placeholder" src="myimage.jpg">
+      </aside>
+      <a href="#">
+        <p>Travis Gray</p>
+        <p>Beginning of message</p>
+      </a>
+    </li>
+  </ul>
+  <header>Another title</header>
+  <ul>
+    <li aria-disabled="true">
+      <aside class="pack-end">
+        <img alt="placeholder" src="myimage.jpg">
+      </aside>
+      <a href="#">
+        <p>Travis Gray</p>
+        <p>Disabled item</p>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <aside class="icon icon-callout">
+          asidecall
+        </aside>
+        <p>Travis Gray <em>(2)</em></p>
+        <p>
+          <time datetime="17:43">5:43PM</time>
+          Mobile
+        </p>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <aside class="icon icon-callout">
+          asidecall
+        </aside>
+        <p>Travis Gray <em>(2)</em></p>
+        <p>
+          <time datetime="17:43">5:43PM</time>
+          Mobile
+        </p>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <aside class="icon icon-callout">
+          asidecall
+        </aside>
+        <p>Travis Gray <em>(2)</em></p>
+        <p>
+          <time datetime="17:43">5:43PM</time>
+          Mobile
+        </p>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <aside class="icon icon-callout">
+          asidecall
+        </aside>
+        <p>Travis Gray <em>(2)</em></p>
+        <p>
+          <time datetime="17:43">5:43PM</time>
+          Mobile
+        </p>
+      </a>
+    </li>
+  </ul>
+</section>
+    
+    
+    </div>
+   
+  </section>
+</div>
+    
+
+<!--
+  <section role="region" data-type="sidebar" id="home">
+    <header>
+        <menu type="toolbar">
+      <a href="#content"><span class="icon icon-add">add</span></a>
+    </menu>
+        <h1>KILOPORTA</h1>
+    </header>
+  </section>
+
+
+
+
+
+
+<!--
+  <section role="region" id="sEntrata">
+    <header>
+      <menu type="toolbar">
+        <a id="bConfiguraE" href="#"><span class="icon icon-options">options</span></a>
+      </menu>
+        <h1 id="tEntrata">Registra ingresso</h1>
+    </header>
+
+    <a class="recommend" id="bEntrata" role="button" href="#">Entrata</a>
+    
+    <ul  data-type="list">
+     <li>
+      <p>Oggi:<span id="tEO">7:50</span> su <span id="tEOD">7:30</span></p>
+     </li>
+     <li>
+      <p>Pausa:<span id="tEP">0:41</span></p>
+     </li>
+    
+     <li>
+      <p>Settimana:<span id="tES" class="rosso">50:00</span> su <span id="tESD">36:00</span></p>
+     </li>
+
+     <li>
+      <p>Debug:<span id="debug">xx</span></p>
+     </li>
+
+
+   </ul>
+
+   <a class="recommend" id="bFerie" role="button" href="#">Ferie/Festa</a> 
+  </section>
+
+
+  <section role="region" id="sUscita">
+    <header>
+      <menu type="toolbar">
+        <a id="bConfiguraU" href="#"><span class="icon icon-options">options</span></a>
+      </menu>
+      <h1 id="tUscita">Registra uscita</h1>
+    </header>
+    <a class="recommend" id="bUscita" role="button" href="#">Uscita</a>
+    
+    <ul  data-type="list">
+     <li>
+      <p>Oggi:<span id="tUO">7,5</span></p>
+     </li>
+    
+     <li>
+      <p>Settimana:<span id="tUS">36,0</span></p>
+     </li>
+
+   </ul>
+    
+    
+  </section>
+
+  <section role="region" id="sConfig">
+    <header>
+      <button id="bConfigClose" class="action-icon back">&nbsp;</button>
+    <menu type="toolbar">
+    </menu>
+		<h1>Configurazione</h1>
+	</header>
+    <form>
+      <fieldset>
+        <legend>Lun</legend>
+        <section>
+          <p>
+          <select>
+  <option>0</option>
+  <option>5:00</option>
+  <option>6:00</option>
+  <option>6:30</option>
+  <option>7:00</option>
+  <option selected="selected">7:30</option>
+  <option>8:00</option>
+  <option>8:30</option>
+  
+</select>
+         </p>
+         </section>
+       </fieldset>
+      <fieldset>
+        <legend>Mar</legend>
+        <section>
+          <p>
+            <input type="text" placeholder="7,5" required="required">
+         </p>
+         </section>
+       </fieldset>
+      <fieldset>
+        <legend>Mer</legend>
+        <section>
+          <p>
+            <input type="text" placeholder="7,5" required="required">
+         </p>
+         </section>
+       </fieldset>
+      <fieldset>
+        <legend>Gio</legend>
+        <section>
+          <p>
+            <input type="text" placeholder="7,5" required="required">
+         </p>
+         </section>
+       </fieldset>
+      <fieldset>
+        <legend>Ven</legend>
+        <section>
+          <p>
+            <input type="text" placeholder="6,0" required="required">
+         </p>
+         </section>
+       </fieldset>
+      <fieldset>
+        <legend>Sab</legend>
+        <section>
+          <p>
+            <input type="text" placeholder="0" required="required">
+         </p>
+         </section>
+       </fieldset>
+      <fieldset>
+        <legend>Dom</legend>
+        <section>
+          <p>
+            <input type="text" placeholder="0" required="required">
+         </p>
+         </section>
+       </fieldset>
+       
+      <fieldset>
+        <legend>PausaMin</legend>
+        <section>
+          <p>
+            <input type="text" placeholder="0,5" required="required">
+         </p>
+         </section>
+       </fieldset>
+
+      <fieldset>
+        <legend>PausaMax</legend>
+        <section>
+          <p>
+            <input type="text" placeholder="1,0" required="required">
+         </p>
+         </section>
+       </fieldset>
+       
+    </form>
+
+  </section>
+-->
+<script src="/js/app.js"></script>
+</body>
+</html>

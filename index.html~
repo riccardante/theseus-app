@@ -1,0 +1,345 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+ <title>Theseus</title>
+ <meta charset="utf-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />  
+ <meta name="apple-mobile-web-app-capable" content="yes">
+ 
+ <link rel="stylesheet" type="text/css" href="style/app.css" />
+ <link rel="stylesheet" type="text/css" href="style/headers.css" />
+ <link rel="stylesheet" type="text/css" href="style/drawer.css" />
+ <link rel="stylesheet" type="text/css" href="style/progress_activity.css" />    
+ <!-- link rel="stylesheet" type="text/css" href='http://api.tiles.mapbox.com/mapbox.js/v1.5.2/mapbox.css' / -->
+ <!-- link rel="stylesheet" type="text/css" href="css/MarkerCluster.Default.css" / -->
+
+
+ <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+
+ <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
+ <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet' />
+
+ <script type="text/javascript" src="js/app.js"></script>
+</head>
+
+<body onselectstart="return false">
+
+<section id="menu" data-type="sidebar">
+  <header>
+    <h1 ><a id="menuUsername" href='#'></a></h1>
+  </header>
+   <nav id="menuNav">
+    <h2>Posizioni salvate</h2>
+    <ul>
+        <li><a href="#" id="btn-Request0"></a></li>
+        <li><a href="#" id="btn-Request1"></a></li>
+        <li><a href="#" id="btn-Request2"></a></li>
+        <li><a href="#" id="btn-RequestAdd">Aggiungi indirizzo</a></li>
+    </ul>
+    <h2><a href="#" id="btn-Profilo">Profilo</a></h2>
+    <ul>
+        <!-- <li><a href="#" id="btn-Profilo">Profilo</a></li> -->
+
+        <!-- <li><a href="#" id="btn-Bacheca">Bacheca</a></li>  -->
+        
+        <li><a href="#" id="btn-NewOrder">Inserisci ordine</a></li>
+        <li><a href="#" id="btn-LogOff">Log off</a></li>
+        <!-- <li><a href="#" id="btn-MezzoTrasporto">Cambia mezzo</a></li>  -->
+        <li><a href="#" id="btn-About">About</a></li>
+    </ul>
+  </nav>
+</section>
+
+
+
+<section id="drawer" role="region">
+  <header>
+      <a id="drawer-controller-hide" href="#"><span class="icon icon-menu">hide sidebar</span></a>
+      <a id="drawer-controller-show" href="#drawer"><span class="icon icon-menu">show sidebar</span></a>
+    <h1>Theseus<span id="addtitle"></span></h1>
+  </header>
+  <div role="main">
+
+
+
+    <!-- SPLASH -->
+    <div id="splash">
+      <div id="logo" class="center"></div>
+      <div class="center">
+        <div class="center"><a id="bLoginClient"  role="button" href="#">Login User</a> </div>
+        <!-- <a id="bLoginCourier" class="center" role="button" href="#">Login Corriere</a> -->
+      </div>   
+    </div>
+
+    <!-- HOMECOURIER -->
+    <div id="homeCourier">
+        <p></p>      
+    </div>
+
+
+    <!-- HOMECLIENT -->
+    <div id="homeClient">
+     <p></p>
+    </div>
+
+    <!--  LOGINFORM  -->
+    <div id="loginForm">
+      <form>
+        <fieldset>
+         <legend>Username</legend>
+          <section><p><input id="signin-username" type="text" placeholder="username" required="required"></p></section>
+         </fieldset>
+         <fieldset>
+        <legend>Password</legend>
+        <section><p><input id="signin-password" type="password" placeholder="****" required="required"></p></section>
+       </fieldset>
+
+      <a id="bFormSignIn" role="button" href="#">Sign in</a>
+      </form>   
+    </div>
+
+    <!-- NUOVOORDINEFORM -->
+    <div id="nuovoOrdineForm">
+      <form>
+        <fieldset>
+         <legend>TODO</legend>
+          <section><p><input id="xxx" type="text" required="required"></p></section>
+         </fieldset>
+        <fieldset>
+         <legend>TODO</legend>
+          <section><p><input id="yyy" type="text" required="required"></p></section>
+         </fieldset>
+      <a id="bFormNuovoOrdine" role="button" href="#">Inserisci</a>
+      </form>   
+    </div>
+
+    <!--  NUOVOINDIRIZZOFORM  -->
+    <div id="nuovoIndirizzoForm">
+      <form>
+        <fieldset>
+         <legend>Nome</legend>
+          <section><p><input id="newAddressName" type="text" required="required"></p></section>
+         </fieldset>
+        <fieldset>
+         <legend>Indirizzo</legend>
+          <section><p><input id="newAddress" type="text" required="required"></p></section>
+         </fieldset>
+         <legend>Citt&agrave;</legend>
+          <section><p><input id="newAddressCity" type="text" required="required"></p></section>
+         </fieldset>
+      <a id="bFormNuovoIndirizzo" role="button" href="#">Inserisci</a>
+      </form>   
+    </div>
+
+
+ <div id='legend-actionbar' style="display:none;" >
+    <div class='my-legend'>
+      <div class='legend-title'><a href="#" id="btn-leg-bacheca">Bacheca</a> <a href="#" id="btn-leg-NuovoIndirizzo">Inserisci nuovo indirizzo</a></div>
+    </div>
+  </div>  
+
+
+ <div id='legend-position' style="display:none;" >
+    <div class='my-legend'>
+      <div class='legend-title'>Posizione: <span id="leg-posizione"></span><a href="#" id="btn-ricalcolaMappa">Ricalcola</a></div>
+    </div>
+  </div>  
+
+  <div id='legend-content' style="display:none;" >
+    <div class='my-legend'>
+      <div class='legend-title'>Percorso <span id="leg-numpercorso"></span></div>
+      <p class="legend-info">Da: <span id="leg-from"></span></p>
+      <p class="legend-info">A: <span id="leg-to"></p>
+      <p class="legend-info">Distanza: <span id="leg-dist"></p>
+      <p class="legend-info">Oggetto: <span id="leg-object"></p>
+      <p class="legend-info">Note: <span id="leg-note"></p>
+      <div class='legend-source'><a href="#" id="legprev">Back</a>&nbsp;&nbsp;&nbsp;<a href="#" id="legnext">Next</a><br/><a href="#" id="leg-accetta">ACCETTA</a></div>
+    </div>
+  </div>  
+  
+
+    <!-- PROFILO -->
+    <div id="profilo">
+        <div class="userRef">
+          <div class="imgLeft"><img id="profileUserPhoto" src=""></img></div>
+          <div id="profileUserName" class="userDetail"></div>
+          <div id="profileUserSurname"class="userDetail"></div>
+        </div>
+        <div class="userRef">
+          <div id="profileUserEmail" class="userDetail"></div>
+          <div id="profileUserMobile"class="userDetail"></div>
+          <div id="profileUserPassword" class="userDetail"></div>
+        </div>
+
+        <div id="prof-mezzoDiTrasporto">
+         <div class="">
+          <a id="prof-bike" role="icona" href="#"></a>
+          <a id="prof-scooter" role="icona" href="#"></a>
+          <a id="prof-auto" role="icona" href="#"></a>
+          <a id="prof-treno" role="icona" href="#"></a>
+         </div> 
+        </div>
+        <a id="bProfileEdit" role="button" href="#">Modifica</a>
+        <a id="bProfileLogout" role="button" href="#">Logout</a>
+    </div>
+
+
+
+    <!-- BACHECA -->  <!-- Valore (euro)  PuntodiPartenza   PuntodiArrivo  KM   descrizione  periodo di validità -->
+    <div id="bacheca">
+    </div>
+
+
+
+
+    
+    <!-- DASHBOARD -->
+    <div id="dashboard">
+      <ul>
+        <li>
+          <h1 class="communicationTitle">Deadline - 1h:26m</h1>
+          <p><a href="#" id="req-001">from: Viale Europa - To: Via Laurentina - pacco 1kg</a></p>
+        </li>
+        <li>
+          <h1 class="communicationTitle">Deadline - 2h:10m</h1>
+          <p><a href="#" id="req-002">from: nomentano - To: circo massimo - busta lettera </a></p>
+        </li>
+        <li>
+          <h1 class="communicationTitle">Deadline - 3h:54m</h1>
+          <p><a href="#" id="req-003">from: tuscolano - To: cipro - pacco 2kg</a></p>
+        </li>
+      </ul>    
+    </div>
+    
+    <!-- REQUEST -->
+    <div id="request"> </div>
+
+    <!-- DETTAGLIO -->
+    <div id="dettaglio">
+      <ul>
+        <li>
+          <h1 class="communicationTitle">Stato:</h1>
+          <p id="det-status"></p><a id="bStatus" role="button" href="#"></a>
+        </li>
+        <li>
+          <h1 class="communicationTitle">Ritiro:</h1>
+          <p id="det-from"></p><a id="bContattaRitiro" role="button" href="#">Contatta</a>
+        </li>
+        <li>
+          <h1 class="communicationTitle">Consegna:</h1>
+          <p id="det-to"></p><a id="bContattaConsegna" role="button" href="#">Contatta</a>
+        </li>
+        <li>
+          <h1 class="communicationTitle">Oggetto:</h1>
+          <p id="det-object"></p>
+        </li>
+        <li>
+          <h1 class="communicationTitle">Note:</h1>
+          <p id="det-note"></p>
+        </li>
+      </ul>  
+    </div>
+
+
+    <!-- COMMUNICATION -->
+    <div id="communication">
+      <p><a id="bChiudiComunica" role="button" href="#">Chiudi</a></p>
+      
+      <ul>
+        <li>
+          <div class="imgLeft"><img src="style/images/contact2.jpg"></img></div>
+          <h1 class="communicationTitle">Ore: 15:26</h1>
+          <p>Quale è il civico/citofono/scala/piano?</p>
+        </li>
+        <li>
+          <div class="imgLeft"><img src="style/images/contact1.jpg"></img></div>
+          <h1 class="communicationTitle">Ore: 15:28</h1>
+          <p>Civico 126. Sono seduto al bar.</p>
+        </li>
+        <li>
+          <div class="imgLeft"><img src="style/images/contact2.jpg"></img></div>
+          <h1 class="communicationTitle">Ore: 15:29</h1>
+          <p>Ok grazie.</p>
+        </li>
+        <li>
+          <div class="imgLeft"><img src="style/images/contact2.jpg"></img></div>
+          <h1 class="communicationTitle">Ore: 16:26</h1>
+          <p>Quale è il civico/citofono/scala/piano?</p>
+        </li>
+        <li>
+          <div class="imgLeft"><img src="style/images/contact3.jpg"></img></div>
+          <h1 class="communicationTitle">Ore: 16:30</h1>
+          <p>ciivico 2. entri nel cancello, in fondo al vialetto a destra.</p>
+        </li>
+        <li>
+          <div class="imgLeft"><img src="style/images/contact2.jpg"></img></div>
+          <h1 class="communicationTitle">Ore: 16:31</h1>
+          <p>Arrivo in 10 minuti.</p>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ABOUT -->
+    <div id="aboutApp">
+      <p><strong>Theseus</strong></p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+        <br/><br/>Fusce sapien neque, ornare vitae elit quis, pretium varius neque. Vestibulum quis nisl tellus. Ut lacinia nulla vel nibh interdum, et suscipit ipsum faucibus. Nam nec nisl neque. Sed malesuada purus nibh, a facilisis mauris congue sit amet. Suspendisse eget metus eu tellus lobortis sagittis id et elit. Duis est nibh, laoreet at nisi quis, laoreet mattis lorem. Aenean arcu quam, auctor eget viverra quis, dapibus in urna. Quisque imperdiet, risus vitae consectetur sagittis, libero dui malesuada quam, non egestas diam augue eget tellus. Nam a tortor mattis, scelerisque massa eget, venenatis tellus. Duis et arcu at enim ultrices ultricies. Ut dignissim ipsum non sollicitudin vulputate. Fusce commodo massa ut convallis blandit. Nam dignissim quis enim eget ultrices. Curabitur iaculis congue eros.
+        <br/><br/>Aenean dignissim at mauris at laoreet. Donec placerat mi ante, vel molestie lacus luctus eu. Mauris faucibus urna at libero aliquet malesuada. Donec pellentesque pharetra risus, id ullamcorper sapien aliquet eu. Sed consequat luctus lorem, in faucibus odio dignissim sed. Morbi eu turpis eu turpis tempus sagittis eget at massa. Praesent eu metus tempor, vestibulum purus quis, scelerisque nisi. Donec in tempor tortor. Praesent eu pretium mauris. Phasellus eu nisl convallis, blandit lectus ut, pretium purus.
+      </p>
+    </div>
+
+    <!-- SIGNATURE -->
+    <div id="signature">
+    
+     <div id="signature-pad" class="m-signature-pad">
+      <div class="m-signature-pad--body">
+        <canvas></canvas>
+      </div>
+      <div class="m-signature-pad--footer">
+        <div class="description">Sign above</div>
+        <button class="button clear" data-action="clear">Canc</button><br/>
+        <button class="button save" data-action="save">Salva</button><br/>
+        <button id="bFirma" class="button bFirma">OK</button><br/>
+      </div>
+     </div>
+    
+    <!--
+      <p><a id="bFirma" role="button" href="#">OK</a></p>
+      <canvas id="signatureCanvas"  height="100px" width="300px" style= "border:1px solid black" />
+      -->
+    </div>
+    
+    
+    
+    <!--
+    <div id="message"></div>
+    <div id="usgsted" class="twitterContent">     
+      <progress class="preloadUsgsted"></progress>
+      <ul id="tweetsUsgsted">
+      </ul>   
+    </div>
+    <div id="usgsbigquakes" class="twitterContent">        
+      <progress class="preloadUsgsbigquakes"></progress>
+      <ul id="tweetsUSGSBigQuakes">
+      </ul>           
+    </div>
+    <div id="contentEarthqueaks">          
+        <progress class="preload"></progress>
+        <ul id="listEarthqueaks">
+        <ul>
+    </div>    
+    <div id="map"></div>
+    -->
+    
+    <div id="splashScreen">
+      <p></p>
+    </div>
+    
+    
+  </div>
+</section>
+
+
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name" : "theseus",
+  "version" : "1.0",
+  "description" : "mockup progetto theseus 2015",
+  "launch_path" : "/index.html",
+  "developer" : {
+    "name" : "riccardante",
+	"url" : "http://www.theseusbag.com/app"
+  },
+  "icons": 
+  {
+     "60": "/style/icons/icon_60.png" ,
+     "128": "/style/icons/icon_128.png"
+  },
+  "permissions": {
+    "geolocation": {
+      "description": "Marking out user location"
+    }
+  }
+} 

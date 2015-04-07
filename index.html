@@ -22,23 +22,19 @@
     <h1 ><a id="menuUsername" href='#'></a></h1>
   </header>
    <nav id="menuNav">
-    <h2>Posizioni salvate</h2>
+    <h2>Theseus</h2>
     <ul>
-        <li><a href="#" id="btn-Request0"></a></li>
-        <li><a href="#" id="btn-Request1"></a></li>
-        <li><a href="#" id="btn-Request2"></a></li>
-        <li><a href="#" id="btn-RequestAdd">Aggiungi indirizzo</a></li>
+        <li><a href="#" id="btn-Request0">Posizione</a></li>
+        <!-- <li><a href="#" id="btn-Request1">Peso</a></li>  -->
+        <li><a href="#" id="btn-Request2">Batteria</a></li>
+        <!-- //THESEUS// <li><a href="#" id="btn-RequestAdd">Aggiungi indirizzo</a></li> -->
     </ul>
     <h2><a href="#" id="btn-Profilo">Profilo</a></h2>
     <ul>
-        <!-- <li><a href="#" id="btn-Profilo">Profilo</a></li> -->
-
-        <!-- <li><a href="#" id="btn-Bacheca">Bacheca</a></li>  -->
-        
-        <li><a href="#" id="btn-NewOrder">Inserisci ordine</a></li>
-        <li><a href="#" id="btn-LogOff">Log off</a></li>
+        <li><a href="#" id="btn-NewOrder">Cambia Theseus</a></li>
         <!-- <li><a href="#" id="btn-MezzoTrasporto">Cambia mezzo</a></li>  -->
         <li><a href="#" id="btn-About">About</a></li>
+        <li><a href="#" id="btn-LogOff">Log off</a></li>
     </ul>
   </nav>
 </section>
@@ -59,11 +55,16 @@
     <div id="splash">
       <div id="logo" class="center"></div>
       <div class="center">
-        <div class="center"><a id="bLoginClient"  role="button" href="#">Login User</a> </div>
-        <!-- <a id="bLoginCourier" class="center" role="button" href="#">Login Corriere</a> -->
+        <div class="center"><a id="bLoginClient"  role="button" href="#">Login</a> </div>
       </div>   
     </div>
 
+    <!-- HOMETHESEUS -->
+    <div id="homeTheseus">
+        <p></p>      
+    </div>
+
+	
     <!-- HOMECOURIER -->
     <div id="homeCourier">
         <p></p>      
@@ -78,14 +79,16 @@
     <!--  LOGINFORM  -->
     <div id="loginForm">
       <form>
-        <fieldset>
+        <!-- <fieldset>
          <legend>Username</legend>
-          <section><p><input id="signin-username" type="text" placeholder="username" required="required"></p></section>
-         </fieldset>
+		 -->
+          <section><p><label for="signin-username">Username:</label> <input id="signin-username" type="text" placeholder="username" required="required" value="riccardante"></p></section>
+         <!-- </fieldset>
          <fieldset>
         <legend>Password</legend>
-        <section><p><input id="signin-password" type="password" placeholder="****" required="required"></p></section>
-       </fieldset>
+		-->
+        <section><p><label for="signin-password">Password:</label> <input id="signin-password" type="password" placeholder="****" required="required" ></p></section>
+       <!-- </fieldset> -->
 
       <a id="bFormSignIn" role="button" href="#">Sign in</a>
       </form>   
@@ -281,48 +284,6 @@
       </p>
     </div>
 
-    <!-- SIGNATURE -->
-    <div id="signature">
-    
-     <div id="signature-pad" class="m-signature-pad">
-      <div class="m-signature-pad--body">
-        <canvas></canvas>
-      </div>
-      <div class="m-signature-pad--footer">
-        <div class="description">Sign above</div>
-        <button class="button clear" data-action="clear">Canc</button><br/>
-        <button class="button save" data-action="save">Salva</button><br/>
-        <button id="bFirma" class="button bFirma">OK</button><br/>
-      </div>
-     </div>
-    
-    <!--
-      <p><a id="bFirma" role="button" href="#">OK</a></p>
-      <canvas id="signatureCanvas"  height="100px" width="300px" style= "border:1px solid black" />
-      -->
-    </div>
-    
-    
-    
-    <!--
-    <div id="message"></div>
-    <div id="usgsted" class="twitterContent">     
-      <progress class="preloadUsgsted"></progress>
-      <ul id="tweetsUsgsted">
-      </ul>   
-    </div>
-    <div id="usgsbigquakes" class="twitterContent">        
-      <progress class="preloadUsgsbigquakes"></progress>
-      <ul id="tweetsUSGSBigQuakes">
-      </ul>           
-    </div>
-    <div id="contentEarthqueaks">          
-        <progress class="preload"></progress>
-        <ul id="listEarthqueaks">
-        <ul>
-    </div>    
-    <div id="map"></div>
-    -->
     
     <div id="splashScreen">
       <p></p>

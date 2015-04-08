@@ -1,11 +1,14 @@
 /*   VARIABILI  */
-var divs = ["splash","menu", "homeTheseus", "homeClient", "homeCourier", "dashboard", "request", "communication", "aboutApp","drawer-controller-hide","drawer-controller-show", "profilo", "legend-content","dettaglio","loginForm","legend-position","nuovoIndirizzoForm","nuovoOrdineForm","bacheca","splashScreen","legend-actionbar"];
+var divs = ["splash","menu", "homeTheseus", "homeClient", "homeCourier", "dashboard", "request", "communication", "aboutApp","drawer-controller-hide","drawer-controller-show", "profilo", "legend-content","dettaglio","loginForm","legend-position","nuovoIndirizzoForm","nuovoOrdineForm","splashScreen","bacheca"];
 var mapID = "riccardante.llg16mdf";
+var mapboxAccessToken = "pk.eyJ1IjoicmljY2FyZGFudGUiLCJhIjoiLUlVekRRYyJ9.ISPJ0xA1XnwnXtE9ibSbyw";
 
+// reverse geocoding: http://api.tiles.mapbox.com/v4/geocode/address/{lon},{lat}.json?access_token=<your access token>
+
+// ,"legend-actionbar"
 
 // la posizione va presa dal GPS
 var posizione = {"lat":"41.800278" , "lon" : "12.238889", "address":"impossibile ottenere la posizione"};
-
 
 
 var myTheseusItems = [{"type" : "standalone", "color":"blue", "photo":"XXX"},
@@ -132,13 +135,23 @@ function showHomeTheseus(){
     appo += myTheseusItems[i]["color"];
     appo += '</h1><p>';
     appo += '<img src="'+myTheseusItems[i]['photo']+'" />';
+	appo += '<div id="btn-theseus-'+i+'"> &gt;&gt; </div>';
     appo += '</p></li>';
+
   }
   appo += '</ul>';
   $('#homeTheseus').html(appo);
+  for(j=0;j<myTheseusItems.length ;j++){
+	  document.getElementById("btn-theseus-"+j).addEventListener("click", showHomeClient,false);
+	  /* TODO    
+	  implementare funzione in loop 
+	  http://stackoverflow.com/questions/1552941/how-does-a-function-in-a-loop-which-returns-another-function-work
+	document.getElementById("btn-theseus-"+j).addEventListener("click", function(){showPippo(j);},false);
+	(function(I) { return function() { alert(I); }; })(j);
+	*/
+  }
   
 }
-
 
 
 
@@ -146,14 +159,17 @@ function showHomeCourier(){
   if(loginas == ""){loginas = "courier";}
   hideAll();
   showDrawerController();
+
+  getAddress();
+
   document.getElementById("legend-position").style.display = "block";
   document.getElementById("legend-actionbar").style.display = "block";
 
   document.getElementById("homeCourier").style.display = "block";
-  document.getElementById("addtitle").innerHTML=" - Home";
+  document.getElementById("addtitle").innerHTML=" - MyTheseus";
   
   if(typeof(map) == "undefined" ){  
-    map =  L.mapbox.map('homeCourier', mapID) .setView([posizione.lat, posizione.lon], 16);
+    map =  L.mapbox.map('homeCourier', mapID) .setView([posizione.lat, posizione.lon], 12);
     pCircle = L.circle([posizione.lat, posizione.lon], 200).addTo(map);
     p1 = L.marker([posizione.lat, posizione.lon], {
       icon: L.mapbox.marker.icon({
@@ -197,8 +213,7 @@ function showHomeCourier(){
 */
 
   }else{
-    ////  if(p1!=undefined){map.removeLayer(p1);}  
-    map.setView([posizione.lat, posizione.lon], 16)
+    map.setView([posizione.lat, posizione.lon], 12)
   }
   if(m1!=undefined){map.removeLayer(m1);}
   if(m2!=undefined){map.removeLayer(m2);}
@@ -210,6 +225,7 @@ function showHomeCourier(){
   
 }
 
+/* THESEUS//
 function showBacheca(){
    hideAll();
   showDrawerController();
@@ -231,7 +247,7 @@ function showBacheca(){
   appo += '</ul>';
   $('#bacheca').html(appo);
 }
-
+*/
 
 
 
@@ -291,6 +307,7 @@ var getPositionOnSuccess = function (position) {
 //THESEUS//fakePosizioniVicine();
 test();
 };
+
 function getPositionOnError(error) {
   document.getElementById("leg-posizione").innerHTML = "impossibile determinare la posizione";
     console.log('Error getting GPS Data');
@@ -317,7 +334,9 @@ function ridisegnaMappa() {
 
 
 function getAddress(){
-  url = "http://api.tiles.mapbox.com/v3/"+mapID+"/geocode/"+posizione.lon+","+posizione.lat+".json";
+//  url = "http://api.tiles.mapbox.com/v3/"+mapID+"/geocode/"+posizione.lon+","+posizione.lat+".json";
+  url = "http://api.tiles.mapbox.com/v4/geocode/address/"+posizione.lon+","+posizione.lat+".json?access_token="+mapboxAccessToken;
+  console.log(url);
   $.getJSON( url, function( data ) {
     posizione.address=data.results[0][0].name +" ("+data.results[0][2].name+")";
     console.log("Posizione: " + data.results[0][0].name +" ("+data.results[0][2].name+")");
@@ -645,7 +664,7 @@ window.onload = function () {
   //THESEUS// document.getElementById("btn-Request1").addEventListener("click", showHome);
   document.getElementById("btn-Request2").addEventListener("click", showRequests);
 //THESEUS//  document.getElementById("btn-RequestAdd").addEventListener("click", showNuovoIndirizzo);
-  document.getElementById("btn-leg-NuovoIndirizzo").addEventListener("click", showNuovoIndirizzo);
+//THESEUS//  document.getElementById("btn-leg-NuovoIndirizzo").addEventListener("click", showNuovoIndirizzo);
 
   document.getElementById("btn-About").addEventListener("click", showAbout);
 //THESEUS//  document.getElementById("prof-bike").addEventListener("click", selectBike);
@@ -659,7 +678,7 @@ window.onload = function () {
   document.getElementById("bContattaConsegna").addEventListener("click", showCommunication);
   document.getElementById("bChiudiComunica").addEventListener("click", showDetails);
   document.getElementById("btn-NewOrder").addEventListener("click", showNewOrder);
-  document.getElementById("btn-leg-bacheca").addEventListener("click", showBacheca);
+//THESEUS//  document.getElementById("btn-leg-bacheca").addEventListener("click", showBacheca);
   document.getElementById("btn-ricalcolaMappa").addEventListener("click", ridisegnaMappa);
 
 
